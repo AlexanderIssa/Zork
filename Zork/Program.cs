@@ -12,10 +12,10 @@ namespace Zork
             while (isRunning)
             {
                 //">" to show where player input is being written
-                Console.Write("> ");
+                Console.Write($"{_rooms[_currentRoom]}\n> ");
                 //set up a string variable that we are going to use for user inputs, stopping ___
-                //Trim() gets rid of whitespace (spaces), LeftTrim and RightTrim are also syntax. To.Upper() makes everything uppercase so case sensitive stuff is easier to manage
-                string inputString = Console.ReadLine().Trim().ToUpper();
+                //Trim() gets rid of whitespace (spaces), LeftTrim and RightTrim are also syntax. To.Upper() makes everything uppercase so case sensitive stuff is easier to manage (took out)
+                string inputString = Console.ReadLine().Trim();
                 //create a data type (enumeration) off of the Commands.cs file
                 Commands command = ToCommand(inputString);
 
@@ -35,7 +35,14 @@ namespace Zork
                     case Commands.South:
                     case Commands.East:
                     case Commands.West:
-                        outputString = $"You moved {command}."; //interpolate the string, very efficient
+                        if (Move(command))
+                        {
+                            outputString = $"You moved {command}."; //interpolate the string, very effective
+                        }
+                        else
+                        {
+                            outputString = "The way is shut!";
+                        }
                         break;
                     
                     default:
@@ -61,6 +68,36 @@ namespace Zork
             }
 
         }
+
+        private static bool Move(Commands command)
+        {
+            bool didMove = false;
+
+            switch (command)
+            {
+                case Commands.North:
+                case Commands.South:
+                    break;
+
+                case Commands.East when _currentRoom < _rooms.Length - 1:
+                    _currentRoom++;
+                    didMove = true;
+                    break;
+
+                case Commands.West when _currentRoom > 0:
+                    if (_currentRoom > 0)
+                    _currentRoom--;
+                    didMove = true;
+                    break;
+            }
+
+            return didMove;
+        } //returns true if player moved false if they didn't
+
+        //hardcode an array for rooms that is readonly (cant be changed during runtime)
+        private static readonly string[] _rooms = { "Forest", "West of House", "Behind House", "Clearing", "Canyon View" };
+        private static int _currentRoom = 1;
+
 
     }
 }
