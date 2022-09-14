@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace Zork
 {
@@ -15,6 +16,24 @@ namespace Zork
 
         private static void Main() //void infront of main is return type so returns nothing (void), private is implied
         {
+
+            Room westOfHouse = new Room("West of House", "A rubber mat saying 'Welcome to Zork!' lies by the door." );
+
+
+            List<Room> rooms = new List<Room>();
+            rooms.Add(westOfHouse);
+
+
+
+
+
+
+
+
+
+
+
+
             //Welcome message
             Console.WriteLine("Welcome to Zork!");
             InitializeRoomDescriptions();
