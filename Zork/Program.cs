@@ -18,7 +18,7 @@ namespace Zork
 
         private static void Main(string[] args) //void infront of main is return type so returns nothing (void), private is implied
         {
-            string roomsFileName = args.Length > 0 ? args[0] : @"Content\Rooms.txt";
+            string roomsFileName = args.Length > 0 ? args[(int)CommandLineArguments.RoomsFileName] : @"Content\Rooms.json";
             InitializeRoomDescriptions(roomsFileName);
 
             Console.WriteLine("Welcome to Zork!");
@@ -125,47 +125,16 @@ namespace Zork
 
         private static void InitializeRoomDescriptions(string roomsFilename)
         {
-
-            Dictionary<string, Room> roomMap = new Dictionary<string, Room>();
-            foreach (Room room in _rooms)
-            {
-                roomMap.Add(room.Name, room);
-            }
-
-            string[] lines = File.ReadAllLines(roomsFilename);
-            foreach (string line in lines)
-            {
-                const string fieldDelimiter = "##";
-                const int expectedFieldCount = 2;
-
-                string[] fields = line.Split(fieldDelimiter);
-                if (fields.Length != expectedFieldCount)
-                {
-                    throw new InvalidDataException("Invalid record.");
-                }
-
-                string name = fields[(int)Fields.Name];
-                string description = fields[(int)Fields.Description];
-
-                roomMap[name].Description = description;
-            }
+           _rooms = JsonConvert.DeserializeObject<Room[,]>(File.ReadAllText(roomsFilename));
         }
 
-        //hardcode an array for rooms that is readonly (cant be changed during runtime)
-        //rectangular array, every row has the same amount of columns
-        private static readonly Room[,] _rooms = 
-        {
-            { new Room("Rocky Trail"), new Room("South of House"), new Room("Canyon View") },
-            { new Room("Forest"), new Room("West of House"), new Room("Behind House") },
-            { new Room("Dense Woods"), new Room("North of House"), new Room("Clearing") }
-        };
+        private static Room[,] _rooms;
 
         private static (int Row, int Column) _location = (1, 1); //tuple, two fields, Row and Column
 
-        private enum Fields
+        private enum CommandLineArguments
         {
-            Name = 0,
-            Description = 1
+           RoomsFileName = 0
         }
 
     }
