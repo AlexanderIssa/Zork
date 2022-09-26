@@ -1,5 +1,7 @@
 ﻿using System;
+using System.IO;
 using System.Collections.Generic;
+using Newtonsoft.Json;
 
 namespace Zork
 {
@@ -14,34 +16,26 @@ namespace Zork
             }
         }
 
-        private static void Main() //void infront of main is return type so returns nothing (void), private is implied
+        private static void Main(string[] args) //void infront of main is return type so returns nothing (void), private is implied
         {
+            string roomsFileName = args.Length > 0 ? args[0] : @"Content\Rooms.txt";
+            InitializeRoomDescriptions(roomsFileName);
 
-            Room westOfHouse = new Room("West of House", "A rubber mat saying 'Welcome to Zork!' lies by the door." );
-
-
-            List<Room> rooms = new List<Room>();
-            rooms.Add(westOfHouse);
-
-
-
-
-
-
-
-
-
-
-
-
-            //Welcome message
             Console.WriteLine("Welcome to Zork!");
-            InitializeRoomDescriptions();
+
+            Room previousRoom = null;
             bool isRunning = true;
             while (isRunning)
             {
                 //">" to show where player input is being written
                 Console.Write($"{CurrentRoom}\n> ");
+                /*
+                if (previousRoom != Player.CurrentRoom)
+                {
+                    Console.WriteLine(Player.CurrentRoom.Description);
+                    previousRoom = Player.CurrentRoom;
+                }
+                */
                 //Trim() gets rid of whitespace (spaces), LeftTrim and RightTrim are also syntax. To.Upper() makes everything uppercase so case sensitive stuff is easier to manage (took out)
                 string inputString = Console.ReadLine().Trim();
                 //create a data type (enumeration) off of the Commands.cs file
@@ -56,6 +50,7 @@ namespace Zork
                         break;
 
                     case Commands.Look:
+                        //outputString = Player.CurrentRoom.Descripton;
                         outputString = CurrentRoom.Description;
                         break;
 
@@ -128,19 +123,32 @@ namespace Zork
             return didMove;
         } //returns true if player moved false if they didn't
 
-        private static void InitializeRoomDescriptions()
+        private static void InitializeRoomDescriptions(string roomsFilename)
         {
-            _rooms[0, 0].Description = "You are on a rock-strewn trail.";
-            _rooms[0, 1].Description = "You are facing the south side of a white house.";
-            _rooms[0, 2].Description = "You are on a rock-strewn trail.";
 
-            _rooms[1, 0].Description = "You are on a rock-strewn trail.";
-            _rooms[1, 1].Description = "You are on a rock-strewn trail.";
-            _rooms[1, 2].Description = "You are on a rock-strewn trail.";
+            Dictionary<string, Room> roomMap = new Dictionary<string, Room>();
+            foreach (Room room in _rooms)
+            {
+                roomMap.Add(room.Name, room);
+            }
 
-            _rooms[2, 0].Description = "You are on a rock-strewn trail.";
-            _rooms[2, 1].Description = "You are on a rock-strewn trail.";
-            _rooms[2, 2].Description = "You are on a rock-strewn trail.";
+            string[] lines = File.ReadAllLines(roomsFilename);
+            foreach (string line in lines)
+            {
+                const string fieldDelimiter = "##";
+                const int expectedFieldCount = 2;
+
+                string[] fields = line.Split(fieldDelimiter);
+                if (fields.Length != expectedFieldCount)
+                {
+                    throw new InvalidDataException("Invalid record.");
+                }
+
+                string name = fields[(int)Fields.Name];
+                string description = fields[(int)Fields.Description];
+
+                roomMap[name].Description = description;
+            }
         }
 
         //hardcode an array for rooms that is readonly (cant be changed during runtime)
@@ -154,11 +162,11 @@ namespace Zork
 
         private static (int Row, int Column) _location = (1, 1); //tuple, two fields, Row and Column
 
-        //1 way to do it
-        //private static int _location.Row = 1;
-        //private static int _location.Column = 1;
+        private enum Fields
+        {
+            Name = 0,
+            Description = 1
+        }
 
-        //another way to do it
-        //private static Location _location = new Location() { Row = 1, Column = 1 };
     }
 }
