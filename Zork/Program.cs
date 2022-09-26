@@ -21,6 +21,8 @@ namespace Zork
             string roomsFileName = args.Length > 0 ? args[(int)CommandLineArguments.RoomsFileName] : @"Content\Rooms.json";
             InitializeRoomDescriptions(roomsFileName);
 
+
+            //Welcome message
             Console.WriteLine("Welcome to Zork!");
 
             Room previousRoom = null;
