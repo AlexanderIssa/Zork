@@ -17,23 +17,6 @@ namespace Zork
         private static void Main() //void infront of main is return type so returns nothing (void), private is implied
         {
 
-            Room westOfHouse = new Room("West of House", "A rubber mat saying 'Welcome to Zork!' lies by the door." );
-
-
-            List<Room> rooms = new List<Room>();
-            rooms.Add(westOfHouse);
-
-
-
-
-
-
-
-
-
-
-
-
             //Welcome message
             Console.WriteLine("Welcome to Zork!");
             InitializeRoomDescriptions();
@@ -130,17 +113,17 @@ namespace Zork
 
         private static void InitializeRoomDescriptions()
         {
-            _rooms[0, 0].Description = "You are on a rock-strewn trail.";
-            _rooms[0, 1].Description = "You are facing the south side of a white house.";
-            _rooms[0, 2].Description = "You are on a rock-strewn trail.";
+            _rooms[0, 0].Description = "You are on a rock-strewn trail."; //Rocky Trail
+            _rooms[0, 1].Description = "You are facing the south side of a white house. There is no door here, and all the windows are barred."; //South of House
+            _rooms[0, 2].Description = "You are at the top of the Great Canyon on its south wall."; //Canyon View
 
-            _rooms[1, 0].Description = "You are on a rock-strewn trail.";
-            _rooms[1, 1].Description = "You are on a rock-strewn trail.";
-            _rooms[1, 2].Description = "You are on a rock-strewn trail.";
+            _rooms[1, 0].Description = "This is a forest, with trees in all directions around you."; //Forest
+            _rooms[1, 1].Description = "This is an open field west of a white house, with a boarded front door."; //West of House
+            _rooms[1, 2].Description = "You are behind the white house. In one corner of the house there is a small window which is slightly ajar."; //Behind House
 
-            _rooms[2, 0].Description = "You are on a rock-strewn trail.";
-            _rooms[2, 1].Description = "You are on a rock-strewn trail.";
-            _rooms[2, 2].Description = "You are on a rock-strewn trail.";
+            _rooms[2, 0].Description = "This is a dimly lit forest, with large trees all around. To the east, there appears to be sunlight."; //Dense Woods
+            _rooms[2, 1].Description = "You are facing the north side of a white house. There is no door here, and all the windows are barred."; //North of house
+            _rooms[2, 2].Description = "You are in a clearing, with a forest surrounding you on the west and south."; //Clearing
         }
 
         //hardcode an array for rooms that is readonly (cant be changed during runtime)
@@ -153,12 +136,5 @@ namespace Zork
         };
 
         private static (int Row, int Column) _location = (1, 1); //tuple, two fields, Row and Column
-
-        //1 way to do it
-        //private static int _location.Row = 1;
-        //private static int _location.Column = 1;
-
-        //another way to do it
-        //private static Location _location = new Location() { Row = 1, Column = 1 };
     }
 }
