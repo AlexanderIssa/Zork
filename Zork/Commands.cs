@@ -7,10 +7,10 @@
     {
         Quit = 0, //don't need = 0, does it automatically
         Look, //1
-        North,
+        North, //2..
         South,
         East,
         West,
-        Uknown, //2
+        Uknown,
     }
 }
