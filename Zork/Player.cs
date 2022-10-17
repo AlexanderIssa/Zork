@@ -16,7 +16,7 @@ namespace Zork
 
             if (_world.RoomsByName.TryGetValue(startingLocation, out _currentRoom) == false)
             {
-                throw new Exception($"Invalid starting location: {startingLocation}"); //if above retun didn't go throw, error case
+                throw new Exception($"Invalid starting location: {startingLocation}"); //if above return didn't go throw, error case
             }
         }
 

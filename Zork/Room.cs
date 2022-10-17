@@ -11,7 +11,7 @@ namespace Zork
         [JsonIgnore]
         public Dictionary<Directions,Room> Neighbors { get; private set; }
 
-        [JsonProperty]
+        [JsonProperty(PropertyName = "Neighbors", Order = 3)]
         private Dictionary<Directions, string> NeighborNames { get; set; }
         //constructor method, must be public, doesn't have a return type, initializes the members of a class
         public Room(string name, string description, Dictionary<Directions,string> neighborNames)

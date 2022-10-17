@@ -11,11 +11,12 @@ namespace Zork
 
         private static void Main(string[] args) //void infront of main is return type so returns nothing (void), private is implied
         {
-            //Welcome message
             const string defaultRoomsFilename = @"Content\Game.json";
             string gameFilename = (args.Length > 0 ? args[(int)CommandLineArguments.GameFilename] : defaultRoomsFilename);
+
             Game game = JsonConvert.DeserializeObject<Game>(File.ReadAllText(gameFilename));
 
+            //Welcome message
             Console.WriteLine("Welcome to Zork!");
             game.Run();
             Console.WriteLine("Finished");

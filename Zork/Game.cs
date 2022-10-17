@@ -1,13 +1,13 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 
 namespace Zork
 {
     public class Game
     {
         //Property named World that is readonly
-        public World World { get; }
-
-        public Player Player { get; }
+        public World World { get; private set; }
+        public Player Player { get; private set; }
         //constructor that assigns it
         public Game(World world, string startingLocation)
         {
