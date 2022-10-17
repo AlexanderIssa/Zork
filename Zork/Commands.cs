@@ -12,5 +12,7 @@
         East,
         West,
         Uknown,
+        Score,
+        Reward
     }
 }

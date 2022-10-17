@@ -61,6 +61,15 @@ namespace Zork
                         }
                         break;
 
+                    case Commands.Score:
+                        outputString = $"Your score would be {Player.score}, in {Player.moveCount} move(s)";
+                        break;
+
+                    case Commands.Reward:
+                        Player.score++;
+                        outputString = "Score increased by 1!";
+                        break;
+
                     default:
                         outputString = "Unknown command.";
                         break;

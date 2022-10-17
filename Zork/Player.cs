@@ -4,6 +4,7 @@ namespace Zork
 {
     public class Player
     {
+        public int score, moveCount;
         //private is only accessible in this class
         public Room CurrentRoom
         {
@@ -26,6 +27,7 @@ namespace Zork
             if (didMove)
             {
                 CurrentRoom = neighbor;
+                moveCount++;
             }
 
             return didMove;
