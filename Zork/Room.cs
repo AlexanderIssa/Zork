@@ -10,15 +10,21 @@ namespace Zork
         public string Description { get; set; }
         [JsonIgnore]
         public Dictionary<Directions,Room> Neighbors { get; private set; }
+        [JsonIgnore]
+        public List<Item> Inventory { get; private set; }
+        [JsonProperty("Inventory")] //lets you use "Inventory" as key in json file
+        private string[] InventoryNames { get; set; }
 
         [JsonProperty(PropertyName = "Neighbors", Order = 3)]
         private Dictionary<Directions, string> NeighborNames { get; set; }
         //constructor method, must be public, doesn't have a return type, initializes the members of a class
-        public Room(string name, string description, Dictionary<Directions,string> neighborNames)
+        public Room(string name, string description, Dictionary<Directions,string> neighborNames,string[] inventoryNames)
         {
             Name = name;
             Description = description;
             NeighborNames = neighborNames ?? new Dictionary<Directions, string>();
+            InventoryNames = inventoryNames ?? new string[0];
+            //Inventory = inventory ?? new List<Item>(); //null coelessing(?) operator: if this inventory passed in is null, then create a new list
         }
 
         public void UpdateNeighbors(World world)
@@ -30,6 +36,16 @@ namespace Zork
             }
 
             NeighborNames = null;
+        }
+
+        public void UpdateInvetory(World world)
+        {
+            Inventory = new List<Item>();
+            foreach (var inventoryName in InventoryNames)
+            {
+                Inventory.Add(world.ItemsByName[inventoryName]);
+            }
+            InventoryNames = null;
         }
 
         //overrides the ToString() method to return the name of the room
