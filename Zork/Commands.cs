@@ -13,6 +13,9 @@
         West,
         Uknown,
         Score,
-        Reward
+        Reward,
+        Take,
+        Drop,
+        Inventory
     }
 }

@@ -24,7 +24,6 @@ namespace Zork
             Description = description;
             NeighborNames = neighborNames ?? new Dictionary<Directions, string>();
             InventoryNames = inventoryNames ?? new string[0];
-            //Inventory = inventory ?? new List<Item>(); //null coelessing(?) operator: if this inventory passed in is null, then create a new list
         }
 
         public void UpdateNeighbors(World world)

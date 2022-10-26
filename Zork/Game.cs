@@ -31,9 +31,24 @@ namespace Zork
                 Console.Write("> ");
                 //Trim() gets rid of whitespace (spaces), LeftTrim and RightTrim are also syntax. To.Upper() makes everything uppercase so case sensitive stuff is easier to manage (took out)
                 string inputString = Console.ReadLine().Trim();
+                const char seperator = ' ';
+                string[] commandTokens = inputString.Split(seperator);
+                string verb = null, subject = null;
                 //create a data type (enumeration) off of the Commands.cs file
-                Commands command = ToCommand(inputString);
-
+                if (commandTokens.Length == 0)
+                {
+                    continue; //skip rest of while loop and go back to the top of the while loop
+                }
+                else if (commandTokens.Length == 1)
+                {
+                    verb = commandTokens[0];
+                }
+                else
+                {
+                    verb = commandTokens[0];
+                    subject = commandTokens[1];
+                }
+                Commands command = ToCommand(verb);
                 string outputString; //assigning a value here would be inefficient as we would be assigning it in all cases in switch below
                 switch (command)
                 {
@@ -43,7 +58,13 @@ namespace Zork
                         break;
 
                     case Commands.Look:
-                        outputString = Player.CurrentRoom.Description;
+                        //outputString = "Player.CurrentRoom.Description";
+                        outputString = $"{Player.CurrentRoom.Description}";
+                        //Console.WriteLine(Player.CurrentRoom.Description);
+                        foreach(Item item in Player.CurrentRoom.Inventory)
+                        {
+                            outputString = $"{Player.CurrentRoom.Description}";
+                        }
                         break;
 
                     case Commands.North:
@@ -67,6 +88,34 @@ namespace Zork
 
                     case Commands.Reward:
                         Player.score++;
+                        outputString = "Score increased by 1!";
+                        break;
+
+                    case Commands.Take:
+                        if (subject == null)
+                        {
+                            outputString = "This command requires a subject.";
+                        }
+                        else
+                        {
+                            outputString = "Score increased by 1!";
+
+                        }
+                        break;
+
+                    case Commands.Drop:
+                        if (subject == null)
+                        {
+                            outputString = "This command requires a subject.";
+                        }
+                        else
+                        {
+                            outputString = "Score increased by 1!";
+
+                        }
+                        break;
+
+                    case Commands.Inventory:
                         outputString = "Score increased by 1!";
                         break;
 

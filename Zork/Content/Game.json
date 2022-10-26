@@ -3,12 +3,16 @@
   "World": {
     "Items": [
       {
-        "Name": "Welcome Mat",
+        "Name": "Mat",
         "Description": "A welcome mat that reads 'Welcome to Zork!' stands infront of you."
       },
       {
         "Name": "Mailbox",
-        "Description": "A small mailbox"
+        "Description": "A small mailbox."
+      },
+      {
+        "Name": "Leaves",
+        "Description": "A pile of leaves."
       }
     ],
     "Rooms": [
@@ -21,6 +25,8 @@
           "West": "Forest 1"
         },
         "Inventory": [
+          "Mat",
+          "Mailbox"
         ]
       },
       {
@@ -79,7 +85,10 @@
         "Neighbors": {
           "West": "Forest 2",
           "South": "forest 3"
-        }
+        },
+        "Inventory": [
+          "Leaves"
+        ]
       }
     ]
   }
