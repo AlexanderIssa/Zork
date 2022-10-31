@@ -52,5 +52,16 @@ namespace Zork
         {
             return Name;
         }
+
+        public void AddToInventory(Item itemToAdd)
+        {
+
+        }
+
+        public void RemoveFromInventory(Item itemToRemove)
+        {
+
+        }
+
     }   
 }

@@ -59,11 +59,11 @@ namespace Zork
 
                     case Commands.Look:
                         //outputString = "Player.CurrentRoom.Description";
-                        outputString = $"{Player.CurrentRoom.Description}";
+                        outputString = $"{Player.CurrentRoom.Description}\n";
                         //Console.WriteLine(Player.CurrentRoom.Description);
                         foreach(Item item in Player.CurrentRoom.Inventory)
                         {
-                            outputString = $"{Player.CurrentRoom.Description}";
+                            outputString += $"{item.Description}\n";
                         }
                         break;
 
@@ -92,14 +92,57 @@ namespace Zork
                         break;
 
                     case Commands.Take:
+                        bool itemInWorld, itemInRoom;
+                        switch (subject)
+                        {
+                            //case (subject == null):
+
+                            default:
+                                break;
+                        }
+                        outputString = "";
                         if (subject == null)
                         {
                             outputString = "This command requires a subject.";
                         }
                         else
                         {
-                            outputString = "Score increased by 1!";
+                            foreach (Item item in World.Items)
+                            {
+                                if (string.Compare(subject, item.Name) == 0)
+                                {
+                                    itemInWorld = true;
+                                    break;
+                                }
+                                else
+                                {
+                                    itemInWorld = false;
+                                    //write stuff
+                                }
 
+                                if (itemInWorld == true)
+                                {
+                                    foreach (Item items in Player.CurrentRoom.Inventory)
+                                    {
+                                        if (string.Compare(subject, items.Name) == 0)
+                                        {
+                                            itemInRoom = true;
+                                            Player.AddToInventory(items);
+                                            Player.CurrentRoom.RemoveFromInventory(items);
+                                            outputString = "Taken.";
+                                            break;
+                                        }
+                                        else
+                                        {
+                                            itemInRoom = false;
+                                            outputString = "No such thing exists.";
+                                        }
+                                    }
+                                }
+
+                            }
+                            
+                            
                         }
                         break;
 
