@@ -1,0 +1,57 @@
+C:\Users\pvarcholik\source\repos\Zork_Fall2022\Zork.Cli\obj\Debug\netcoreapp3.1\Zork.Cli.csproj.AssemblyReference.cache
+C:\Users\pvarcholik\source\repos\Zork_Fall2022\Zork.Cli\obj\Debug\netcoreapp3.1\Zork.Cli.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\pvarcholik\source\repos\Zork_Fall2022\Zork.Cli\obj\Debug\netcoreapp3.1\Zork.Cli.AssemblyInfoInputs.cache
+C:\Users\pvarcholik\source\repos\Zork_Fall2022\Zork.Cli\obj\Debug\netcoreapp3.1\Zork.Cli.AssemblyInfo.cs
+C:\Users\pvarcholik\source\repos\Zork_Fall2022\Zork.Cli\obj\Debug\netcoreapp3.1\Zork.Cli.csproj.CoreCompileInputs.cache
+C:\Users\pvarcholik\source\repos\Zork_Fall2022\Zork.Cli\bin\Debug\netcoreapp3.1\Content\Game.json
+C:\Users\pvarcholik\source\repos\Zork_Fall2022\Zork.Cli\bin\Debug\netcoreapp3.1\Zork.Cli.exe
+C:\Users\pvarcholik\source\repos\Zork_Fall2022\Zork.Cli\bin\Debug\netcoreapp3.1\Zork.Cli.deps.json
+C:\Users\pvarcholik\source\repos\Zork_Fall2022\Zork.Cli\bin\Debug\netcoreapp3.1\Zork.Cli.runtimeconfig.json
+C:\Users\pvarcholik\source\repos\Zork_Fall2022\Zork.Cli\bin\Debug\netcoreapp3.1\Zork.Cli.runtimeconfig.dev.json
+C:\Users\pvarcholik\source\repos\Zork_Fall2022\Zork.Cli\bin\Debug\netcoreapp3.1\Zork.Cli.dll
+C:\Users\pvarcholik\source\repos\Zork_Fall2022\Zork.Cli\bin\Debug\netcoreapp3.1\Zork.Cli.pdb
+C:\Users\pvarcholik\source\repos\Zork_Fall2022\Zork.Cli\bin\Debug\netcoreapp3.1\Newtonsoft.Json.dll
+C:\Users\pvarcholik\source\repos\Zork_Fall2022\Zork.Cli\bin\Debug\netcoreapp3.1\Zork.Common.dll
+C:\Users\pvarcholik\source\repos\Zork_Fall2022\Zork.Cli\bin\Debug\netcoreapp3.1\Zork.Common.pdb
+C:\Users\pvarcholik\source\repos\Zork_Fall2022\Zork.Cli\obj\Debug\netcoreapp3.1\Zork.Cli.csproj.CopyComplete
+C:\Users\pvarcholik\source\repos\Zork_Fall2022\Zork.Cli\obj\Debug\netcoreapp3.1\Zork.Cli.dll
+C:\Users\pvarcholik\source\repos\Zork_Fall2022\Zork.Cli\obj\Debug\netcoreapp3.1\Zork.Cli.pdb
+C:\Users\pvarcholik\source\repos\Zork_Fall2022\Zork.Cli\obj\Debug\netcoreapp3.1\Zork.Cli.genruntimeconfig.cache
+D:\Users\alex1\Documents\Classes\Fall 2022\Tools and Plugins\Zork.Cli\bin\Debug\netcoreapp3.1\Content\Game.json
+D:\Users\alex1\Documents\Classes\Fall 2022\Tools and Plugins\Zork.Cli\bin\Debug\netcoreapp3.1\Zork.Cli.exe
+D:\Users\alex1\Documents\Classes\Fall 2022\Tools and Plugins\Zork.Cli\bin\Debug\netcoreapp3.1\Zork.Cli.deps.json
+D:\Users\alex1\Documents\Classes\Fall 2022\Tools and Plugins\Zork.Cli\bin\Debug\netcoreapp3.1\Zork.Cli.runtimeconfig.json
+D:\Users\alex1\Documents\Classes\Fall 2022\Tools and Plugins\Zork.Cli\bin\Debug\netcoreapp3.1\Zork.Cli.runtimeconfig.dev.json
+D:\Users\alex1\Documents\Classes\Fall 2022\Tools and Plugins\Zork.Cli\bin\Debug\netcoreapp3.1\Zork.Cli.dll
+D:\Users\alex1\Documents\Classes\Fall 2022\Tools and Plugins\Zork.Cli\bin\Debug\netcoreapp3.1\Zork.Cli.pdb
+D:\Users\alex1\Documents\Classes\Fall 2022\Tools and Plugins\Zork.Cli\bin\Debug\netcoreapp3.1\Newtonsoft.Json.dll
+D:\Users\alex1\Documents\Classes\Fall 2022\Tools and Plugins\Zork.Cli\bin\Debug\netcoreapp3.1\Zork.Common.dll
+D:\Users\alex1\Documents\Classes\Fall 2022\Tools and Plugins\Zork.Cli\bin\Debug\netcoreapp3.1\Zork.Common.pdb
+D:\Users\alex1\Documents\Classes\Fall 2022\Tools and Plugins\Zork.Cli\obj\Debug\netcoreapp3.1\Zork.Cli.csproj.AssemblyReference.cache
+D:\Users\alex1\Documents\Classes\Fall 2022\Tools and Plugins\Zork.Cli\obj\Debug\netcoreapp3.1\Zork.Cli.GeneratedMSBuildEditorConfig.editorconfig
+D:\Users\alex1\Documents\Classes\Fall 2022\Tools and Plugins\Zork.Cli\obj\Debug\netcoreapp3.1\Zork.Cli.AssemblyInfoInputs.cache
+D:\Users\alex1\Documents\Classes\Fall 2022\Tools and Plugins\Zork.Cli\obj\Debug\netcoreapp3.1\Zork.Cli.AssemblyInfo.cs
+D:\Users\alex1\Documents\Classes\Fall 2022\Tools and Plugins\Zork.Cli\obj\Debug\netcoreapp3.1\Zork.Cli.csproj.CoreCompileInputs.cache
+D:\Users\alex1\Documents\Classes\Fall 2022\Tools and Plugins\Zork.Cli\obj\Debug\netcoreapp3.1\Zork.Cli.csproj.CopyComplete
+D:\Users\alex1\Documents\Classes\Fall 2022\Tools and Plugins\Zork.Cli\obj\Debug\netcoreapp3.1\Zork.Cli.dll
+D:\Users\alex1\Documents\Classes\Fall 2022\Tools and Plugins\Zork.Cli\obj\Debug\netcoreapp3.1\Zork.Cli.pdb
+D:\Users\alex1\Documents\Classes\Fall 2022\Tools and Plugins\Zork.Cli\obj\Debug\netcoreapp3.1\Zork.Cli.genruntimeconfig.cache
+D:\Users\alex1\Documents\GitHub\Zork\Zork.Cli\bin\Debug\netcoreapp3.1\Content\Game.json
+D:\Users\alex1\Documents\GitHub\Zork\Zork.Cli\bin\Debug\netcoreapp3.1\Zork.Cli.exe
+D:\Users\alex1\Documents\GitHub\Zork\Zork.Cli\bin\Debug\netcoreapp3.1\Zork.Cli.deps.json
+D:\Users\alex1\Documents\GitHub\Zork\Zork.Cli\bin\Debug\netcoreapp3.1\Zork.Cli.runtimeconfig.json
+D:\Users\alex1\Documents\GitHub\Zork\Zork.Cli\bin\Debug\netcoreapp3.1\Zork.Cli.runtimeconfig.dev.json
+D:\Users\alex1\Documents\GitHub\Zork\Zork.Cli\bin\Debug\netcoreapp3.1\Zork.Cli.dll
+D:\Users\alex1\Documents\GitHub\Zork\Zork.Cli\bin\Debug\netcoreapp3.1\Zork.Cli.pdb
+D:\Users\alex1\Documents\GitHub\Zork\Zork.Cli\bin\Debug\netcoreapp3.1\Newtonsoft.Json.dll
+D:\Users\alex1\Documents\GitHub\Zork\Zork.Cli\bin\Debug\netcoreapp3.1\Zork.Common.dll
+D:\Users\alex1\Documents\GitHub\Zork\Zork.Cli\bin\Debug\netcoreapp3.1\Zork.Common.pdb
+D:\Users\alex1\Documents\GitHub\Zork\Zork.Cli\obj\Debug\netcoreapp3.1\Zork.Cli.csproj.AssemblyReference.cache
+D:\Users\alex1\Documents\GitHub\Zork\Zork.Cli\obj\Debug\netcoreapp3.1\Zork.Cli.GeneratedMSBuildEditorConfig.editorconfig
+D:\Users\alex1\Documents\GitHub\Zork\Zork.Cli\obj\Debug\netcoreapp3.1\Zork.Cli.AssemblyInfoInputs.cache
+D:\Users\alex1\Documents\GitHub\Zork\Zork.Cli\obj\Debug\netcoreapp3.1\Zork.Cli.AssemblyInfo.cs
+D:\Users\alex1\Documents\GitHub\Zork\Zork.Cli\obj\Debug\netcoreapp3.1\Zork.Cli.csproj.CoreCompileInputs.cache
+D:\Users\alex1\Documents\GitHub\Zork\Zork.Cli\obj\Debug\netcoreapp3.1\Zork.Cli.csproj.CopyComplete
+D:\Users\alex1\Documents\GitHub\Zork\Zork.Cli\obj\Debug\netcoreapp3.1\Zork.Cli.dll
+D:\Users\alex1\Documents\GitHub\Zork\Zork.Cli\obj\Debug\netcoreapp3.1\Zork.Cli.pdb
+D:\Users\alex1\Documents\GitHub\Zork\Zork.Cli\obj\Debug\netcoreapp3.1\Zork.Cli.genruntimeconfig.cache
