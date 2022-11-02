@@ -179,7 +179,7 @@ namespace Zork
 
                     case Commands.Inventory:
                         outputString = "";
-                        if (Player.Inventory == null)
+                        if (Player.Inventory == null || Player.Inventory.Count <= 0) //if the player's inventory is null or empty
                         {
                             outputString = "You are empty handed";
                             break;
