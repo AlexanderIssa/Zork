@@ -23,6 +23,7 @@ namespace Zork
             {
                 throw new Exception($"Invalid starting location: {startingLocation}"); //if above return didn't go throw, error case
             }
+            Inventory = new List<Item>();
         }
 
         public bool Move(Directions direction)
@@ -39,15 +40,12 @@ namespace Zork
 
         public void AddToInventory (Item itemToAdd)
         {
-            foreach (Item item in _currentRoom.Inventory)
-            {
-
-            }
+            Inventory.Add(itemToAdd);
         }
 
         public void RemoveFromInventory(Item itemToRemove)
         {
-
+            Inventory.Remove(itemToRemove);
         }
 
         private World _world;

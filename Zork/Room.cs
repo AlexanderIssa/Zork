@@ -55,12 +55,12 @@ namespace Zork
 
         public void AddToInventory(Item itemToAdd)
         {
-
+            Inventory.Add(itemToAdd);
         }
 
         public void RemoveFromInventory(Item itemToRemove)
         {
-
+            Inventory.Remove(itemToRemove);
         }
 
     }   

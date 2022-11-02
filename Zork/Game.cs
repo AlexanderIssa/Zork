@@ -58,9 +58,7 @@ namespace Zork
                         break;
 
                     case Commands.Look:
-                        //outputString = "Player.CurrentRoom.Description";
                         outputString = $"{Player.CurrentRoom.Description}\n";
-                        //Console.WriteLine(Player.CurrentRoom.Description);
                         foreach(Item item in Player.CurrentRoom.Inventory)
                         {
                             outputString += $"{item.Description}\n";
@@ -92,14 +90,6 @@ namespace Zork
                         break;
 
                     case Commands.Take:
-                        bool itemInWorld, itemInRoom;
-                        switch (subject)
-                        {
-                            //case (subject == null):
-
-                            default:
-                                break;
-                        }
                         outputString = "";
                         if (subject == null)
                         {
@@ -107,59 +97,100 @@ namespace Zork
                         }
                         else
                         {
-                            foreach (Item item in World.Items)
+                            StringComparer comparer = StringComparer.OrdinalIgnoreCase; //string comparer that ignores case sensitivity
+                            foreach (Item item in World.Items) //check each item in the world
                             {
-                                if (string.Compare(subject, item.Name) == 0)
+                                if (comparer.Compare(subject, item.Name) == 0)
                                 {
-                                    itemInWorld = true;
+                                    if (Player.CurrentRoom.Inventory.Count > 0) //if the room has any items at all
+                                    {
+                                        foreach (Item items in Player.CurrentRoom.Inventory)
+                                        {
+                                            if (comparer.Compare(subject, items.Name) == 0)
+                                            {
+                                                Player.AddToInventory(items);
+                                                Player.CurrentRoom.RemoveFromInventory(items);
+                                                outputString = "Taken.";
+                                                break;
+                                            }
+                                            else
+                                            {
+                                                outputString = "You can't see any such thing.";
+                                            }
+                                        }
+                                    }
+                                    else
+                                    {
+                                        outputString = "You can't see any such thing.";
+                                    }
                                     break;
                                 }
                                 else
                                 {
-                                    itemInWorld = false;
-                                    //write stuff
+                                    outputString = "You can't see any such thing.";
                                 }
-
-                                if (itemInWorld == true)
-                                {
-                                    foreach (Item items in Player.CurrentRoom.Inventory)
-                                    {
-                                        if (string.Compare(subject, items.Name) == 0)
-                                        {
-                                            itemInRoom = true;
-                                            Player.AddToInventory(items);
-                                            Player.CurrentRoom.RemoveFromInventory(items);
-                                            outputString = "Taken.";
-                                            break;
-                                        }
-                                        else
-                                        {
-                                            itemInRoom = false;
-                                            outputString = "No such thing exists.";
-                                        }
-                                    }
-                                }
-
                             }
-                            
-                            
                         }
                         break;
 
                     case Commands.Drop:
+                        outputString = "";
                         if (subject == null)
                         {
                             outputString = "This command requires a subject.";
                         }
                         else
                         {
-                            outputString = "Score increased by 1!";
-
+                            StringComparer comparer = StringComparer.OrdinalIgnoreCase; //string comparer that ignores case sensitivity
+                            foreach (Item item in World.Items) //check each item in the world
+                            {
+                                if (comparer.Compare(subject, item.Name) == 0)
+                                {
+                                    if (Player.Inventory.Count > 0) //if the player has any items at all
+                                    {
+                                        foreach (Item items in Player.Inventory)
+                                        {
+                                            if (comparer.Compare(subject, items.Name) == 0)
+                                            {
+                                                Player.CurrentRoom.AddToInventory(items);
+                                                Player.RemoveFromInventory(items);
+                                                outputString = "Dropped.";
+                                                break;
+                                            }
+                                            else
+                                            {
+                                                outputString = "You don't have any such item in your inventory.";
+                                            }
+                                        }
+                                    }
+                                    else
+                                    {
+                                        outputString = "You don't have any such item in your inventory.";
+                                    }
+                                    break;
+                                }
+                                else
+                                {
+                                    outputString = "You don't have any such item in your inventory.";
+                                }
+                            }
                         }
                         break;
 
                     case Commands.Inventory:
-                        outputString = "Score increased by 1!";
+                        outputString = "";
+                        if (Player.Inventory == null)
+                        {
+                            outputString = "You are empty handed";
+                            break;
+                        }
+                        else
+                        {
+                            foreach (Item item in Player.Inventory)
+                            {
+                                outputString += $"{item.Description}\n";
+                            }
+                        }                        
                         break;
 
                     default:
