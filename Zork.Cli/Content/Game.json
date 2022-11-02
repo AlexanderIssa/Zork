@@ -4,15 +4,18 @@
     "Items": [
       {
         "Name": "Mat",
-        "Description": "A rubber mat with the words 'Welcome to Zork!' written on it lies here."
+        "Description": "A rubber mat with the words 'Welcome to Zork!' written on it lies here.",
+        "InvDescription": "A rubber mat with the words 'Welcome to Zork!' written on it is somehow in your pocket."
       },
       {
         "Name": "Mailbox",
-        "Description": "There is a small mailbox here."
+        "Description": "There is a small mailbox here.",
+        "InvDescription": "You somehow managed to stick a mailbox in your pocket."
       },
       {
         "Name": "Leaves",
-        "Description": "There is a pile of leaves here."
+        "Description": "There is a pile of leaves here.",
+        "InvDescription": "A bunch of leaves are stuffed in your pocket."
       }
     ],
     "Rooms": [

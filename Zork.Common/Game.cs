@@ -95,37 +95,69 @@ namespace Zork.Common
                         else
                         {
                             StringComparer comparer = StringComparer.OrdinalIgnoreCase; //string comparer that ignores case sensitivity
-                            foreach (Item item in World.Items) //check each item in the world
+                            if (Player.Inventory.Count > 0)
                             {
-                                if (comparer.Compare(subject, item.Name) == 0)
+                                foreach (Item item in Player.Inventory)
                                 {
-                                    if (Player.CurrentRoom.Inventory.Count > 0) //if the room has any items at all
+                                    if (comparer.Compare(subject, item.Name) == 0) //Item name matches an item's name in the Player's inventory
                                     {
-                                        foreach (Item items in Player.CurrentRoom.Inventory)
-                                        {
-                                            if (comparer.Compare(subject, items.Name) == 0)
-                                            {
-                                                Player.AddToInventory(items);
-                                                Player.CurrentRoom.RemoveFromInventory(items);
-                                                outputString = "Taken.";
-                                                break;
-                                            }
-                                            else
-                                            {
-                                                outputString = "You can't see any such thing.";
-                                            }
-                                        }
+                                        outputString = "You already have that in your Inventory.";
+                                        break;
                                     }
                                     else
                                     {
-                                        outputString = "You can't see any such thing.";
+                                        if (Player.CurrentRoom.Inventory.Count > 0) //if the room has any items at all
+                                        {
+                                            foreach (Item items in Player.CurrentRoom.Inventory)
+                                            {
+                                                if (comparer.Compare(subject, items.Name) == 0) //Item name matches Item's name in Room's inventory
+                                                {
+                                                    //Add item to Player's Inventory then remove it from the Room's inventory
+                                                    Player.AddToInventory(items);
+                                                    Player.CurrentRoom.RemoveFromInventory(items);
+                                                    outputString = "Taken.";
+                                                    break;
+                                                }
+                                                else
+                                                {
+                                                    outputString = "You can't see any such thing.";
+                                                }
+                                            }
+                                        }
+                                        else
+                                        {
+                                            outputString = "You can't see any such thing.";
+                                        }
+                                        break;
                                     }
-                                    break;
+                                }
+
+                            }
+                            else
+                            {
+                                if (Player.CurrentRoom.Inventory.Count > 0) //if the room has any items at all
+                                {
+                                    foreach (Item items in Player.CurrentRoom.Inventory)
+                                    {
+                                        if (comparer.Compare(subject, items.Name) == 0) //Item name matches Item's name in Room's inventory
+                                        {
+                                            //Add item to Player's Inventory then remove it from the Room's inventory
+                                            Player.AddToInventory(items);
+                                            Player.CurrentRoom.RemoveFromInventory(items);
+                                            outputString = "Taken.";
+                                            break;
+                                        }
+                                        else
+                                        {
+                                            outputString = "You can't see any such thing.";
+                                        }
+                                    }
                                 }
                                 else
                                 {
                                     outputString = "You can't see any such thing.";
                                 }
+                                break;
                             }
                         }
                         break;
@@ -139,38 +171,29 @@ namespace Zork.Common
                         else
                         {
                             StringComparer comparer = StringComparer.OrdinalIgnoreCase; //string comparer that ignores case sensitivity
-                            foreach (Item item in World.Items) //check each item in the world
-                            {
-                                if (comparer.Compare(subject, item.Name) == 0)
+                            if (Player.Inventory.Count > 0) //if the player has any items at all
+                            { 
+                                foreach (Item items in Player.Inventory)
                                 {
-                                    if (Player.Inventory.Count > 0) //if the player has any items at all
+                                    if (comparer.Compare(subject, items.Name) == 0) //Item name matches item in Player Inventory
                                     {
-                                        foreach (Item items in Player.Inventory)
-                                        {
-                                            if (comparer.Compare(subject, items.Name) == 0)
-                                            {
-                                                Player.CurrentRoom.AddToInventory(items);
-                                                Player.RemoveFromInventory(items);
-                                                outputString = "Dropped.";
-                                                break;
-                                            }
-                                            else
-                                            {
-                                                outputString = "You don't have any such item in your inventory.";
-                                            }
-                                        }
+                                        //Add to Room inventory and remove from Player Inventory
+                                        Player.CurrentRoom.AddToInventory(items);
+                                        Player.RemoveFromInventory(items);
+                                        outputString = "Dropped.";
+                                        break;
                                     }
                                     else
                                     {
                                         outputString = "You don't have any such item in your inventory.";
                                     }
-                                    break;
-                                }
-                                else
-                                {
-                                    outputString = "You don't have any such item in your inventory.";
                                 }
                             }
+                            else
+                            {
+                                outputString = "You don't have any such item in your inventory.";
+                            }
+                            break;
                         }
                         break;
 
@@ -185,7 +208,7 @@ namespace Zork.Common
                         {
                             foreach (Item item in Player.Inventory)
                             {
-                                outputString += $"{item.Description}\n";
+                                outputString += $"{item.InvDescription}\n";
                             }
                         }
                         break;
