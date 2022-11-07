@@ -13,11 +13,19 @@ namespace Zork.Cli
             string gameFilename = (args.Length > 0 ? args[(int)CommandLineArguments.GameFilename] : defaultRoomsFilename);
             Game game = JsonConvert.DeserializeObject<Game>(File.ReadAllText(gameFilename));
 
+            var input = new ConsoleInputService();
             var output = new ConsoleOutputService();
 
             Console.WriteLine("Welcome to Zork!");
-            game.Run(output);
-            Console.WriteLine("Finished.");
+            game.Run(input, output);
+
+            while (game.IsRunning)
+            {
+                game.Output.Write("> ");
+                input.ProcessInput();
+            }
+
+            output.WriteLine("Finished");
         }
 
         private enum CommandLineArguments
