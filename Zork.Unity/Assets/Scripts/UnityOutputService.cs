@@ -42,16 +42,19 @@ public class UnityOutputService : MonoBehaviour, IOutputService
         else if (messageSplit.Length == 1)
         {
             textLine.text = message;
+            _entries.Enqueue(textLine.gameObject);
         }
         else
         {
             textLine.text = message;
             var newLine = Instantiate(NewLinePrefab, ContentTransform);
+            _entries.Enqueue(textLine.gameObject);
+            _entries.Enqueue(newLine.gameObject);
         }
-        _entries.Enqueue(textLine.gameObject);
+        
         if(_entries.Count >= MaxEntries)
         {
-            _entries.Dequeue();
+            Destroy(_entries.Dequeue());
         }
     }
 
