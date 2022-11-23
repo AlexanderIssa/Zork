@@ -25,6 +25,8 @@ public class GameManager : MonoBehaviour
         TextAsset gameJson = Resources.Load<TextAsset>("GameJson");
         _game = JsonConvert.DeserializeObject<Game>(gameJson.text);
         _game.Player.LocationChanged += Player_LocationChanged;
+        _game.Player.MovesChanged += Player_MovesChanged;
+        _game.Player.ScoreChanged += Player_ScoreChanged;
         _game.Run(InputService, OutputService);
     }
 
@@ -33,11 +35,21 @@ public class GameManager : MonoBehaviour
         LocationText.text = location.Name;
     }
 
+    private void Player_MovesChanged(object sender, int moves)
+    {
+        MovesText.text = $"Moves: {moves}";
+    }
+
+    private void Player_ScoreChanged(object sender, int score)
+    {
+        ScoreText.text = $"Score: {score}";
+    }
+
     private void Start()
     {
         InputService.SetFocus();
         LocationText.text = _game.Player.CurrentRoom.Name;
-
+        //MovesText.text = $"Moves: {_game.Player.Moves}";
     }
 
     private void Update()

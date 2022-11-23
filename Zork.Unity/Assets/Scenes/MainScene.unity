@@ -984,6 +984,7 @@ MonoBehaviour:
   TextLinePrefab: {fileID: 5401182325458621861, guid: 588b8b31d8a95f44499d702ca3bfc88b, type: 3}
   NewLinePrefab: {fileID: 5900218741435007096, guid: 2231d2a2daf50e345888eeec0bf603a2, type: 3}
   ContentTransform: {fileID: 1190344246}
+  MaxEntries: 10
 --- !u!114 &949885188
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1787,7 +1788,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 1}
+  m_Color: {r: 0.24528301, g: 0.24528301, b: 0.24528301, a: 0.87058824}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1

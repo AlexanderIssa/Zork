@@ -117,6 +117,15 @@ namespace Zork.Common
                     }
                     break;
 
+                case Commands.Score:
+                    Console.WriteLine($"Your score would be {Player.Score}, in {Player.Moves} move(s).");
+                    break;
+
+                case Commands.Reward:
+                    Player.Score++;
+                    Console.WriteLine("Score increased by 1!");
+                    break;
+
                 default:
                     Output.WriteLine("Unknown command.");
                     break;
@@ -150,6 +159,7 @@ namespace Zork.Common
             {
                 Player.AddItemToInventory(itemToTake);
                 Player.CurrentRoom.RemoveItemFromInventory(itemToTake);
+                Player.Moves++;
                 Console.WriteLine("Taken.");
             }
         }
@@ -165,6 +175,7 @@ namespace Zork.Common
             {
                 Player.CurrentRoom.AddItemToInventory(itemToDrop);
                 Player.RemoveItemFromInventory(itemToDrop);
+                Player.Moves++;
                 Console.WriteLine("Dropped.");
             }
         }
