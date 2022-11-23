@@ -65,11 +65,13 @@ namespace Zork.Common
             {
                 case Commands.Quit:
                     IsRunning = false;
+                    Player.Moves++;
                     Output.WriteLine("Thank you for playing!");
                     break;
 
                 case Commands.Look:
                     Look();
+                    Player.Moves++;
                     break;
 
                 case Commands.North:
@@ -106,10 +108,12 @@ namespace Zork.Common
                     if (Player.Inventory.Count() == 0)
                     {
                         Output.WriteLine("You are empty handed.");
+                        Player.Moves++;
                     }
                     else
                     {
                         Output.WriteLine("You are carrying:");
+                        Player.Moves++;
                         foreach (Item item in Player.Inventory)
                         {
                             Output.WriteLine(item.InventoryDescription);

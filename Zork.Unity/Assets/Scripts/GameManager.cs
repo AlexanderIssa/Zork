@@ -49,7 +49,8 @@ public class GameManager : MonoBehaviour
     {
         InputService.SetFocus();
         LocationText.text = _game.Player.CurrentRoom.Name;
-        //MovesText.text = $"Moves: {_game.Player.Moves}";
+        MovesText.text = $"Moves: {_game.Player.Moves}";
+        ScoreText.text = $"Score: {_game.Player.Score}";
     }
 
     private void Update()
