@@ -61,12 +61,25 @@ namespace Zork.Common
                 verb = commandTokens[0];
                 subject = commandTokens[1];
             }
-            else if (string.Compare(commandTokens[2], "with", ignoreCase: true) == 0)
+            else if (string.Compare(commandTokens[2], "with", ignoreCase: true) == 0 && commandTokens.Length == 3)
             {
                 verb = commandTokens[0];
                 subject = commandTokens[1];
                 withString = commandTokens[2];
-                weaponString = commandTokens[3];
+            }
+            else if (string.Compare(commandTokens[2], "with", ignoreCase: true) == 0 && commandTokens.Length == 4)
+            {
+                verb = commandTokens[0];
+                subject = commandTokens[1];
+                withString = commandTokens[2];
+                if (string.IsNullOrEmpty(commandTokens[3]))
+                {
+                    weaponString = null;
+                }
+                else
+                {
+                    weaponString = commandTokens[3];
+                }
             }
             else
             {
