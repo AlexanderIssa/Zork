@@ -45,6 +45,9 @@ namespace Zork.Common
 
             string verb;
             string subject = null;
+            string withString = null;
+            string weaponString = null;
+
             if (commandTokens.Length == 0)
             {
                 return;
@@ -53,10 +56,21 @@ namespace Zork.Common
             {
                 verb = commandTokens[0];
             }
-            else
+            else if (commandTokens.Length == 2)
             {
                 verb = commandTokens[0];
                 subject = commandTokens[1];
+            }
+            else if (string.Compare(commandTokens[2], "with", ignoreCase: true) == 0)
+            {
+                verb = commandTokens[0];
+                subject = commandTokens[1];
+                withString = commandTokens[2];
+                weaponString = commandTokens[3];
+            }
+            else
+            {
+                verb = commandTokens[0];
             }
 
             Room previousRoom = Player.CurrentRoom;
@@ -121,6 +135,21 @@ namespace Zork.Common
                     }
                     break;
 
+                case Commands.Attack:
+                    if (string.IsNullOrEmpty(subject))
+                    {
+                        Output.WriteLine("This command requires a subject.");
+                    }
+                    else if (string.IsNullOrEmpty(withString))
+                    {
+                        Output.WriteLine("Attack with what?");
+                    }
+                    else
+                    {
+                        Attack(subject, weaponString);
+                    }
+                    break;
+
                 case Commands.Score:
                     Output.WriteLine($"Your score would be {Player.Score}, in {Player.Moves} move(s).");
                     break;
@@ -148,6 +177,24 @@ namespace Zork.Common
             foreach (Item item in Player.CurrentRoom.Inventory)
             {
                 Output.WriteLine(item.LookDescription);
+            }
+        }
+
+        private void Attack(string enemyName, string weaponName)
+        {
+            Item weapon = Player.Inventory.FirstOrDefault(item => string.Compare(item.Name, weaponName, ignoreCase: true) == 0);
+            if (weapon == null)
+            {
+                Output.WriteLine("You don't have any such weapon in your inventory.");
+            }
+            else if (weapon.IsWeapon == true)
+            {
+                Player.Moves++;
+                Output.WriteLine("Attack function here.");
+            }
+            else
+            {
+                Output.WriteLine("That item cannot be used as a weapon.");
             }
         }
 

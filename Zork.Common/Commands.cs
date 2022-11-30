@@ -23,6 +23,8 @@
         Score,
         Reward,
         R = Reward,
+        Attack,
+        A = Attack,
         Unknown
     }
 }
