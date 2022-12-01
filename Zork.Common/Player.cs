@@ -10,6 +10,8 @@ namespace Zork.Common
         public event EventHandler<int> MovesChanged;
 
         public event EventHandler<int> ScoreChanged;
+
+        public event EventHandler<int> HealthChanged;
         public Room CurrentRoom
         {
             get => _currentRoom;
@@ -44,9 +46,19 @@ namespace Zork.Common
             }
         }
 
+        public int Health
+        {
+            get => _health;
+            set
+            {
+                _health = value;
+                HealthChanged?.Invoke(this, _health);
+            }
+        }
+
         public IEnumerable<Item> Inventory => _inventory;
 
-        public Player(World world, string startingLocation)
+        public Player(World world, string startingLocation, int health)
         {
             _world = world;
 
@@ -54,6 +66,8 @@ namespace Zork.Common
             {
                 throw new Exception($"Invalid starting location: {startingLocation}");
             }
+
+            Health = health;
 
             _inventory = new List<Item>();
         }
@@ -91,6 +105,6 @@ namespace Zork.Common
         private readonly World _world;
         private Room _currentRoom;
         private readonly List<Item> _inventory;
-        private int _moves, _score;
+        private int _moves, _score, _health;
     }
 }

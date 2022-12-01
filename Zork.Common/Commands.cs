@@ -25,6 +25,10 @@
         R = Reward,
         Attack,
         A = Attack,
+        Health,
+        H = Health,
+        Damage,
+        D = Damage,
         Unknown
     }
 }

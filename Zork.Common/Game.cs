@@ -20,10 +20,10 @@ namespace Zork.Common
         [JsonIgnore]
         public bool IsRunning { get; private set; }
 
-        public Game(World world, string startingLocation)
+        public Game(World world, string startingLocation, int playerHealth)
         {
             World = world;
-            Player = new Player(World, startingLocation);
+            Player = new Player(World, startingLocation, playerHealth);
         }
 
         public void Run(IInputService input, IOutputService output)
@@ -48,43 +48,90 @@ namespace Zork.Common
             string withString = null;
             string weaponString = null;
 
-            if (commandTokens.Length == 0)
+            switch (commandTokens.Length)
             {
-                return;
+                case 1:
+                    verb = commandTokens[0];
+                    break;
+
+                case 2:
+                    verb = commandTokens[0];
+                    subject = commandTokens[1];
+                    break;
+
+                case 3:
+                    if (string.Compare(commandTokens[2], "with", ignoreCase: true) == 0)
+                    {
+                        verb = commandTokens[0];
+                        subject = commandTokens[1];
+                        withString = commandTokens[2];
+                    }
+                    else
+                    {
+                        verb = commandTokens[0];
+                        subject = commandTokens[1];
+                        break;
+                    }
+                    break;
+
+                case 4:
+                    if (string.Compare(commandTokens[2], "with", ignoreCase: true) == 0 && !string.IsNullOrEmpty(commandTokens[3]))
+                    {
+                        verb = commandTokens[0];
+                        subject = commandTokens[1];
+                        withString = commandTokens[2];
+                        weaponString = commandTokens[3];
+                    }
+                    else
+                    {
+                        verb = commandTokens[0];
+                        subject = commandTokens[1];
+                        break;
+                    }
+                    break;
+
+                default:
+                    verb = commandTokens[0];
+                    break;
             }
-            else if (commandTokens.Length == 1)
-            {
-                verb = commandTokens[0];
-            }
-            else if (commandTokens.Length == 2)
-            {
-                verb = commandTokens[0];
-                subject = commandTokens[1];
-            }
-            else if (string.Compare(commandTokens[2], "with", ignoreCase: true) == 0 && commandTokens.Length == 3)
-            {
-                verb = commandTokens[0];
-                subject = commandTokens[1];
-                withString = commandTokens[2];
-            }
-            else if (string.Compare(commandTokens[2], "with", ignoreCase: true) == 0 && commandTokens.Length == 4)
-            {
-                verb = commandTokens[0];
-                subject = commandTokens[1];
-                withString = commandTokens[2];
-                if (string.IsNullOrEmpty(commandTokens[3]))
-                {
-                    weaponString = null;
-                }
-                else
-                {
-                    weaponString = commandTokens[3];
-                }
-            }
-            else
-            {
-                verb = commandTokens[0];
-            }
+
+            //if (commandTokens.Length == 0)
+            //{
+            //    return;
+            //}
+            //else if (commandTokens.Length == 1)
+            //{
+            //    verb = commandTokens[0];
+            //}
+            //else if (commandTokens.Length == 2)
+            //{
+            //    verb = commandTokens[0];
+            //    subject = commandTokens[1];
+            //}
+            //else if (string.Compare(commandTokens[2], "with", ignoreCase: true) == 0 && commandTokens.Length == 3)
+            //{
+            //    verb = commandTokens[0];
+            //    subject = commandTokens[1];
+            //    withString = commandTokens[2];
+            //}
+            //else if (string.Compare(commandTokens[2], "with", ignoreCase: true) == 0 && commandTokens.Length == 4)
+            //{
+            //    verb = commandTokens[0];
+            //    subject = commandTokens[1];
+            //    withString = commandTokens[2];
+            //    if (string.IsNullOrEmpty(commandTokens[3]))
+            //    {
+            //        weaponString = null;
+            //    }
+            //    else
+            //    {
+            //        weaponString = commandTokens[3];
+            //    }
+            //}
+            //else
+            //{
+            //    verb = commandTokens[0];
+            //}
 
             Room previousRoom = Player.CurrentRoom;
             Commands command = ToCommand(verb);
@@ -163,6 +210,10 @@ namespace Zork.Common
                     }
                     break;
 
+                case Commands.Health:
+                    Output.WriteLine(Player.Health);
+                    break;
+
                 case Commands.Score:
                     Output.WriteLine($"Your score would be {Player.Score}, in {Player.Moves} move(s).");
                     break;
@@ -170,6 +221,10 @@ namespace Zork.Common
                 case Commands.Reward:
                     Player.Score++;
                     Output.WriteLine("Score increased by 1!");
+                    break;
+
+                case Commands.Damage:
+                    Player.Health--;
                     break;
 
                 default:
@@ -190,6 +245,10 @@ namespace Zork.Common
             foreach (Item item in Player.CurrentRoom.Inventory)
             {
                 Output.WriteLine(item.LookDescription);
+            }
+            foreach (Enemy enemy in Player.CurrentRoom.Enemies)
+            {
+                Output.WriteLine(enemy.Description);
             }
         }
 
@@ -232,7 +291,7 @@ namespace Zork.Common
             Item itemToDrop = Player.Inventory.FirstOrDefault(item => string.Compare(item.Name, itemName, ignoreCase: true) == 0);
             if (itemToDrop == null)
             {
-                Output.WriteLine("You can't see any such thing.");                
+                Output.WriteLine("You can't see any such thing.");
             }
             else
             {

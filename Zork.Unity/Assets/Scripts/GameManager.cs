@@ -15,6 +15,9 @@ public class GameManager : MonoBehaviour
     private TextMeshProUGUI MovesText;
 
     [SerializeField]
+    private TextMeshProUGUI HealthText;
+
+    [SerializeField]
     private UnityInputService InputService;
 
     [SerializeField]
@@ -27,6 +30,7 @@ public class GameManager : MonoBehaviour
         _game.Player.LocationChanged += Player_LocationChanged;
         _game.Player.MovesChanged += Player_MovesChanged;
         _game.Player.ScoreChanged += Player_ScoreChanged;
+        _game.Player.HealthChanged += Player_HealthChanged;
         _game.Run(InputService, OutputService);
     }
 
@@ -45,12 +49,18 @@ public class GameManager : MonoBehaviour
         ScoreText.text = $"Score: {score}";
     }
 
+    private void Player_HealthChanged(object sender, int health)
+    {
+        HealthText.text = $"Health: {health}";
+    }
+
     private void Start()
     {
         InputService.SetFocus();
         LocationText.text = _game.Player.CurrentRoom.Name;
         MovesText.text = $"Moves: {_game.Player.Moves}";
         ScoreText.text = $"Score: {_game.Player.Score}";
+        HealthText.text = $"Health: {_game.Player.Health}";
     }
 
     private void Update()

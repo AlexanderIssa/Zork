@@ -1,5 +1,6 @@
 {
   "StartingLocation": "West of House",
+  "playerHealth": 3,
   "World": {
     "Items": [
       {
@@ -21,6 +22,14 @@
         "IsWeapon": false
       }
     ],
+    "Enemies": [
+      {
+        "Name": "Slime",
+        "Description": "A slimy slime",
+        "Weakness": "Fire",
+        "Health": 1
+      }
+    ],
     "Rooms": [
       {
         "Name": "West of House",
@@ -33,6 +42,9 @@
         "InventoryNames": [
           "Mat",
           "Mailbox"
+        ],
+        "EnemyNames": [
+          "Slime"
         ]
       },
       {
