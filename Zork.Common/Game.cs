@@ -26,6 +26,8 @@ namespace Zork.Common
             Player = new Player(World, startingLocation, playerHealth);
         }
 
+        Random rnd = new Random();
+
         public void Run(IInputService input, IOutputService output)
         {
             Input = input ?? throw new ArgumentNullException(nameof(input));
@@ -94,44 +96,6 @@ namespace Zork.Common
                     verb = commandTokens[0];
                     break;
             }
-
-            //if (commandTokens.Length == 0)
-            //{
-            //    return;
-            //}
-            //else if (commandTokens.Length == 1)
-            //{
-            //    verb = commandTokens[0];
-            //}
-            //else if (commandTokens.Length == 2)
-            //{
-            //    verb = commandTokens[0];
-            //    subject = commandTokens[1];
-            //}
-            //else if (string.Compare(commandTokens[2], "with", ignoreCase: true) == 0 && commandTokens.Length == 3)
-            //{
-            //    verb = commandTokens[0];
-            //    subject = commandTokens[1];
-            //    withString = commandTokens[2];
-            //}
-            //else if (string.Compare(commandTokens[2], "with", ignoreCase: true) == 0 && commandTokens.Length == 4)
-            //{
-            //    verb = commandTokens[0];
-            //    subject = commandTokens[1];
-            //    withString = commandTokens[2];
-            //    if (string.IsNullOrEmpty(commandTokens[3]))
-            //    {
-            //        weaponString = null;
-            //    }
-            //    else
-            //    {
-            //        weaponString = commandTokens[3];
-            //    }
-            //}
-            //else
-            //{
-            //    verb = commandTokens[0];
-            //}
 
             Room previousRoom = Player.CurrentRoom;
             Commands command = ToCommand(verb);
@@ -237,6 +201,10 @@ namespace Zork.Common
                 Look();
             }
 
+            if (Player.Health <= 0)
+            {
+                IsRunning = false;
+            }
         }
         
         private void Look()
@@ -254,19 +222,72 @@ namespace Zork.Common
 
         private void Attack(string enemyName, string weaponName)
         {
+            bool EnemyDead = false;
+            // Find enemy to attack and get ref and do same with weapon
+            Enemy enemyToAttack = Player.CurrentRoom.Enemies.FirstOrDefault(enemy => string.Compare(enemy.Name, enemyName, ignoreCase: true) == 0);
             Item weapon = Player.Inventory.FirstOrDefault(item => string.Compare(item.Name, weaponName, ignoreCase: true) == 0);
-            if (weapon == null)
+            // Check to see if refs are null or not
+            if (enemyToAttack == null)
             {
-                Output.WriteLine("You don't have any such weapon in your inventory.");
-            }
-            else if (weapon.IsWeapon == true)
-            {
-                Player.Moves++;
-                Output.WriteLine("Attack function here.");
+                Output.WriteLine("There is no such enemy here.");
             }
             else
             {
-                Output.WriteLine("That item cannot be used as a weapon.");
+                if (weapon == null)
+                {
+                    Output.WriteLine("You don't have any such weapon in your inventory.");
+                }
+                else if (weapon.IsWeapon == true)
+                {
+                    Player.Moves++;
+                    if (rnd.Next(100) >= enemyToAttack.HitChance) // Roll a number, if that number is >= the enemy's hit chance then you successfully hit it
+                    {
+                        if (string.Compare(weapon.Element, enemyToAttack.Weakness, ignoreCase: true) == 0) // if the weapon has an element the enemy is weak to, do double damage
+                        {
+                            enemyToAttack.Health -= 2;
+                            Output.WriteLine($"Hit {enemyToAttack.Name} with it's weakness! Damage Doubled!");
+                        }
+                        else
+                        {
+                            enemyToAttack.Health--;
+                        }
+
+                        // If the enemy dies remove it from the room, add score relative to enemy's score reward, and tell the player
+                        if (enemyToAttack.Health <= 0)
+                        {
+                            Player.CurrentRoom.RemoveEnemy(enemyToAttack);
+                            Player.Score += enemyToAttack.ScoreReward;
+                            Output.WriteLine($"{enemyToAttack.Name} has been slain.");
+                            EnemyDead = true;
+                        }
+                    }
+                    else
+                    {
+                        Output.WriteLine("Your attack missed.");
+                    }
+
+                    if (EnemyDead == false)
+                    {
+                        Output.WriteLine($"{enemyToAttack.Name} attacks!");
+                        if (rnd.Next(100) >= enemyToAttack.MissChance)
+                        {
+                            Output.WriteLine($"{enemyToAttack.Name}'s attack missed.");
+                        }
+                        else
+                        {
+                            Output.WriteLine($"{enemyToAttack.Name}'s attack hit!");
+                            Player.Health -= enemyToAttack.AttackPower;
+                            if (Player.Health <= 0)
+                            {
+                                IsRunning = false;
+                            }
+                        }
+                    }
+                }
+                else
+                {
+                    Output.WriteLine("That item cannot be used as a weapon.");
+                }
             }
         }
 

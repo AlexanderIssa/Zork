@@ -11,7 +11,7 @@ namespace Zork.Common
 
         public event EventHandler<int> ScoreChanged;
 
-        public event EventHandler<int> HealthChanged;
+        public event EventHandler<float> HealthChanged;
         public Room CurrentRoom
         {
             get => _currentRoom;
@@ -46,7 +46,7 @@ namespace Zork.Common
             }
         }
 
-        public int Health
+        public float Health
         {
             get => _health;
             set
@@ -105,6 +105,7 @@ namespace Zork.Common
         private readonly World _world;
         private Room _currentRoom;
         private readonly List<Item> _inventory;
-        private int _moves, _score, _health;
+        private int _moves, _score;
+        private float _health;
     }
 }

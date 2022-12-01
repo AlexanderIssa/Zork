@@ -7,27 +7,41 @@
         "Name": "Mat",
         "LookDescription": "A rubber mat saying 'Welcome to Zork!' lies here.",
         "InventoryDescription": "A welcome mat.",
+        "Element": "None",
         "IsWeapon": false
       },
       {
         "Name": "Mailbox",
         "LookDescription": "There is a small mailbox here.",
         "InventoryDescription": "A small mailbox.",
+        "Element": "Physical",
         "IsWeapon": true
       },
       {
         "Name": "Leaves",
         "LookDescription": "There is a pile of leaves here.",
         "InventoryDescription": "A pile of leaves.",
+        "Element": "None",
         "IsWeapon": false
+      },
+      {
+        "Name": "Sword",
+        "LookDescription": "There is a sword covered in flames lying here.",
+        "InventoryDescription": "A sword covered in flames.",
+        "Element": "Fire",
+        "IsWeapon": true
       }
     ],
     "Enemies": [
       {
         "Name": "Slime",
-        "Description": "A slimy slime",
+        "Description": "A slimy slime wanders around aimlessly",
         "Weakness": "Fire",
-        "Health": 1
+        "Health": 1,
+        "HitChance": 0,
+        "MissChance": 10,
+        "AttackPower": 0.5,
+        "ScoreReward": 1
       }
     ],
     "Rooms": [
@@ -54,7 +68,10 @@
           "North": "Forest 2",
           "East": "Behind House",
           "West": "West of House"
-        }
+        },
+        "InventoryNames": [
+          "Sword"
+        ]
       },
       {
         "Name": "South of House",

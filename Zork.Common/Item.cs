@@ -10,12 +10,15 @@
 
         public bool IsWeapon { get; }
 
-        public Item(string name, string lookDescription, string inventoryDescription, bool isWeapon)
+        public string Element { get; set; }
+
+        public Item(string name, string lookDescription, string inventoryDescription, bool isWeapon, string element)
         {
             Name = name;
             LookDescription = lookDescription;
             InventoryDescription = inventoryDescription;
             IsWeapon = isWeapon;
+            Element = element;
         }
 
         public override string ToString() => Name;

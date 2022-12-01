@@ -112,6 +112,11 @@ namespace Zork.Common
             }
         }
 
+        public void RemoveEnemy(Enemy enemyToRemove)
+        {
+            _enemies.Remove(enemyToRemove);
+        }
+
         public override string ToString() => Name;
 
         private readonly List<Item> _inventory;

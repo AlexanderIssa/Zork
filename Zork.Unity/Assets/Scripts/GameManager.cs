@@ -49,7 +49,7 @@ public class GameManager : MonoBehaviour
         ScoreText.text = $"Score: {score}";
     }
 
-    private void Player_HealthChanged(object sender, int health)
+    private void Player_HealthChanged(object sender, float health)
     {
         HealthText.text = $"Health: {health}";
     }

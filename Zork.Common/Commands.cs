@@ -17,7 +17,9 @@
         West,
         W = West,
         Take,
+        T = Take,
         Drop,
+        D = Drop,
         Inventory,
         I = Inventory,
         Score,
@@ -28,7 +30,7 @@
         Health,
         H = Health,
         Damage,
-        D = Damage,
+        Da = Damage,
         Unknown
     }
 }
