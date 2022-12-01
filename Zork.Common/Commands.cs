@@ -31,6 +31,8 @@
         H = Health,
         Damage,
         Da = Damage,
+        Use,
+        U = Use,
         Unknown
     }
 }

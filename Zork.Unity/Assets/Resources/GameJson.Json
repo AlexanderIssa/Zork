@@ -7,29 +7,54 @@
         "Name": "Mat",
         "LookDescription": "A rubber mat saying 'Welcome to Zork!' lies here.",
         "InventoryDescription": "A welcome mat.",
-        "Element": "None",
         "IsWeapon": false
       },
       {
         "Name": "Mailbox",
         "LookDescription": "There is a small mailbox here.",
-        "InventoryDescription": "A small mailbox.",
+        "InventoryDescription": "A heavy but unstable mailbox.\nElement: Physical",
         "Element": "Physical",
+        "Durability": 1,
+        "Attack": 3,
         "IsWeapon": true
       },
       {
         "Name": "Leaves",
         "LookDescription": "There is a pile of leaves here.",
         "InventoryDescription": "A pile of leaves.",
-        "Element": "None",
         "IsWeapon": false
       },
       {
         "Name": "Sword",
         "LookDescription": "There is a sword covered in flames lying here.",
-        "InventoryDescription": "A sword covered in flames.",
+        "InventoryDescription": "A sword covered in flames.\nElement: Fire",
         "Element": "Fire",
+        "Durability": 5,
+        "Attack": 2,
         "IsWeapon": true
+      },
+      {
+        "Name": "Stick",
+        "LookDescription": "There is a stick lying here.",
+        "InventoryDescription": "A stick is stuffed in your pocket.\nElement: Earth",
+        "Element": "Earth",
+        "Durability": 1,
+        "Attack": 1,
+        "IsWeapon": true
+      },
+      {
+        "Name": "Potion",
+        "LookDescription": "There is a potion on top of one of the tables.",
+        "InventoryDescription": "A red potion is on your belt",
+        "IsWeapon": false,
+        "IsUseable": true
+      },
+      {
+        "Name": "Kit",
+        "LookDescription": "There is a kit lying on the ground.",
+        "InventoryDescription": "A repair kit",
+        "IsWeapon": false,
+        "IsUseable": true
       }
     ],
     "Enemies": [
@@ -42,6 +67,16 @@
         "MissChance": 10,
         "AttackPower": 0.5,
         "ScoreReward": 1
+      },
+      {
+        "Name": "Imp",
+        "Description": "An imp stares at you with mischievous intent",
+        "Weakness": "Water",
+        "Health": 3,
+        "HitChance": 20,
+        "MissChance": 70,
+        "AttackPower": 1,
+        "ScoreReward": 2
       }
     ],
     "Rooms": [
@@ -79,7 +114,13 @@
         "NeighborNames": {
           "East": "Behind House",
           "West": "West of House"
-        }
+        },
+        "InventoryNames": [
+          "Stick"
+        ],
+        "EnemyNames": [
+          "Imp"
+        ]
       },
       {
         "Name": "Behind House",
@@ -88,7 +129,10 @@
           "North": "North of House",
           "East": "Clearing",
           "South": "South of House"
-        }
+        },
+        "InventoryNames": [
+          "Potion"
+        ]
       },
       {
         "Name": "Forest 1",
@@ -97,7 +141,10 @@
         "NeighborNames": {
           "South": "Forest 3",
           "East": "West of House"
-        }
+        },
+        "InventoryNames": [
+          "Kit"
+        ]
       },
       {
         "Name": "Forest 2",

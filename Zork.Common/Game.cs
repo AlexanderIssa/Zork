@@ -174,6 +174,58 @@ namespace Zork.Common
                     }
                     break;
 
+                case Commands.Use:
+                    if (subject == null)
+                    {
+                        Output.WriteLine("This command requires a subject.");
+                    }
+                    else
+                    {
+                        Item itemToUse = Player.Inventory.FirstOrDefault(item => string.Compare(item.Name, subject, ignoreCase: true) == 0);
+                        if (itemToUse == null)
+                        {
+                            Output.WriteLine("You have no such item.");
+                        }
+                        else
+                        {
+                            if (itemToUse.IsUseable == false)
+                            {
+                                Output.WriteLine($"{itemToUse.Name} is not useable.");
+                            }
+                            else
+                            {
+                                switch (itemToUse.Name)
+                                {
+                                    case "Potion":
+                                        Player.Health++;
+                                        Output.WriteLine("You drank the potion. Your health went up by 1!");
+                                        Player.RemoveItemFromInventory(itemToUse);
+                                        break;
+
+                                    case "Kit":
+                                        foreach (Item item in Player.Inventory)
+                                        {
+                                            if (item.IsWeapon)
+                                            {
+                                                item.Durability++;
+                                            }
+                                            else
+                                            {
+                                                continue;
+                                            }
+                                        }
+                                        Output.WriteLine("You used the kit! All weapons in inventory got their durability raised by 1!");
+                                        Player.RemoveItemFromInventory(itemToUse);
+                                        break;
+
+                                    default:
+                                        break;
+                                }
+                            }
+                        }
+                    }
+                    break;
+
                 case Commands.Health:
                     Output.WriteLine(Player.Health);
                     break;
@@ -240,16 +292,20 @@ namespace Zork.Common
                 else if (weapon.IsWeapon == true)
                 {
                     Player.Moves++;
+
                     if (rnd.Next(100) >= enemyToAttack.HitChance) // Roll a number, if that number is >= the enemy's hit chance then you successfully hit it
                     {
                         if (string.Compare(weapon.Element, enemyToAttack.Weakness, ignoreCase: true) == 0) // if the weapon has an element the enemy is weak to, do double damage
                         {
-                            enemyToAttack.Health -= 2;
+                            enemyToAttack.Health -= weapon.Attack * 2;
                             Output.WriteLine($"Hit {enemyToAttack.Name} with it's weakness! Damage Doubled!");
+                            weapon.Durability--;
                         }
                         else
                         {
-                            enemyToAttack.Health--;
+                            Output.WriteLine($"Successfully hit {enemyToAttack.Name}!");
+                            enemyToAttack.Health -= weapon.Attack;
+                            weapon.Durability--;
                         }
 
                         // If the enemy dies remove it from the room, add score relative to enemy's score reward, and tell the player
@@ -264,6 +320,12 @@ namespace Zork.Common
                     else
                     {
                         Output.WriteLine("Your attack missed.");
+                    }
+
+                    if (weapon.Durability <= 0)
+                    {
+                        Output.WriteLine($"{weapon.Name} broke!");
+                        Player.RemoveItemFromInventory(weapon);
                     }
 
                     if (EnemyDead == false)

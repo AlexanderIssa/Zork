@@ -12,13 +12,22 @@
 
         public string Element { get; set; }
 
-        public Item(string name, string lookDescription, string inventoryDescription, bool isWeapon, string element)
+        public int Durability { get; set; }
+
+        public int Attack { get; set; }
+
+        public bool IsUseable { get; }
+
+        public Item(string name, string lookDescription, string inventoryDescription, bool isWeapon, string element, int durability, int attack, bool isUseable)
         {
             Name = name;
             LookDescription = lookDescription;
             InventoryDescription = inventoryDescription;
             IsWeapon = isWeapon;
             Element = element;
+            Durability = durability;
+            Attack = attack;
+            IsUseable = isUseable;
         }
 
         public override string ToString() => Name;
