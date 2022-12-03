@@ -83,6 +83,7 @@
       {
         "Name": "West of House",
         "Description": "This is an open field west of a white house, with a boarded front door.",
+        "HasEnemy": true,
         "NeighborNames": {
           "North": "North of House",
           "South": "South of House",
@@ -99,6 +100,7 @@
       {
         "Name": "North of House",
         "Description": "You are facing the north side of a white house. There is no door here, and all the windows are barred.",
+        "IsBlocked": true,
         "NeighborNames": {
           "North": "Forest 2",
           "East": "Behind House",

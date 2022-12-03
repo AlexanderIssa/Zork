@@ -117,8 +117,19 @@ namespace Zork.Common
                 case Commands.East:
                 case Commands.West:
                     Directions direction = (Directions)command;
-                    Output.WriteLine(Player.Move(direction) ? $"You moved {direction}." : "The way is shut!");
-                    break;
+                    if (string.Compare(Player.Move(direction), "Moved", ignoreCase: true) == 0)
+                    {
+                        Output.WriteLine($"You moved {direction}.");
+                    }
+                    else if ((string.Compare(Player.Move(direction), "nMoved", ignoreCase: true) == 0))
+                    {
+                        Output.WriteLine("The way is shut!");
+                    }
+                    else if (string.Compare(Player.Move(direction), "Blocked", ignoreCase: true) == 0)
+                    {
+                        Output.WriteLine("An enemy blocks that path.");
+                    }
+                        break;
 
                 case Commands.Take:
                     if (string.IsNullOrEmpty(subject))
@@ -314,6 +325,7 @@ namespace Zork.Common
                             Player.CurrentRoom.RemoveEnemy(enemyToAttack);
                             Player.Score += enemyToAttack.ScoreReward;
                             Output.WriteLine($"{enemyToAttack.Name} has been slain.");
+                            Player.CurrentRoom.HasEnemy = false;
                             EnemyDead = true;
                         }
                     }

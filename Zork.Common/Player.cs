@@ -72,16 +72,37 @@ namespace Zork.Common
             _inventory = new List<Item>();
         }
 
-        public bool Move(Directions direction)
+        public string Move(Directions direction)
         {
+            string returnString = "";
             bool didMove = _currentRoom.Neighbors.TryGetValue(direction, out Room neighbor);
             if (didMove)
             {
-                CurrentRoom = neighbor;
-                Moves++;
+                if (neighbor.IsBlocked == true)
+                {
+                    Moves++;
+                    returnString = "Blocked";
+                    if (_currentRoom.HasEnemy == false)
+                    {
+                        neighbor.IsBlocked = false;
+                        returnString = "Moved";
+                        CurrentRoom = neighbor;
+                    }
+                }
+                else
+                {
+                    returnString = "Moved";
+                    CurrentRoom = neighbor;
+                    Moves++;
+                }
+
+            }
+            else
+            {
+                returnString = "nMove";
             }
 
-            return didMove;
+            return returnString;
         }
 
         public void AddItemToInventory(Item itemToAdd)

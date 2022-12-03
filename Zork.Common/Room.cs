@@ -29,7 +29,13 @@ namespace Zork.Common
         [JsonProperty]
         private string[] EnemyNames { get; set; }
 
-        public Room(string name, string description, Dictionary<Directions, string> neighborNames, string[] inventoryNames, string[] enemyNames)
+        [JsonProperty]
+        public bool IsBlocked { get; set; }
+
+        [JsonProperty]
+        public bool HasEnemy { get; set; }
+
+        public Room(string name, string description, Dictionary<Directions, string> neighborNames, string[] inventoryNames, string[] enemyNames, bool isBlocked, bool hasEnemy)
         {
             Name = name;
             Description = description;
@@ -41,6 +47,8 @@ namespace Zork.Common
 
             EnemyNames = enemyNames ?? new string[0];
             _enemies = new List<Enemy>();
+            IsBlocked = isBlocked;
+            HasEnemy = hasEnemy;
         }
 
         public static bool operator ==(Room lhs, Room rhs)
