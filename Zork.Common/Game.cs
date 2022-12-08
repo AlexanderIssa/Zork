@@ -213,8 +213,8 @@ namespace Zork.Common
                                 switch (itemToUse.Name)
                                 {
                                     case "Potion":
-                                        Player.Health++;
-                                        Output.WriteLine("You drank the potion. Your health went up by 1!");
+                                        Player.Health = 5;
+                                        Output.WriteLine("You drank the potion. Your health went back to max!");
                                         Player.RemoveItemFromInventory(itemToUse);
                                         break;
 
@@ -232,6 +232,10 @@ namespace Zork.Common
                                         }
                                         Output.WriteLine("You used the kit! All weapons in inventory got their durability raised by 1!");
                                         Player.RemoveItemFromInventory(itemToUse);
+                                        break;
+
+                                    case "Note":
+                                        Output.WriteLine("The note reads: Thank you for playing the game! Congrats on defeating the demon!");
                                         break;
 
                                     default:
@@ -330,7 +334,18 @@ namespace Zork.Common
                             Player.CurrentRoom.RemoveEnemy(enemyToAttack);
                             Player.Score += enemyToAttack.ScoreReward;
                             Output.WriteLine($"{enemyToAttack.Name} has been slain.");
-                            Player.CurrentRoom.HasEnemy = false;
+                            foreach (var room in Player.CurrentRoom.Neighbors)
+                            {
+                                if (room.Value.IsBlocked)
+                                {
+                                    room.Value.IsBlocked = false;
+                                }
+                                else
+                                {
+                                    continue;
+                                }
+                            }
+                            //Player.CurrentRoom.HasEnemy = false;
                             EnemyDead = true;
                         }
                     }

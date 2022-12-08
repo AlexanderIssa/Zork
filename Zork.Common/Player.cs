@@ -82,12 +82,12 @@ namespace Zork.Common
                 {
                     Moves++;
                     returnString = "Blocked";
-                    if (_currentRoom.HasEnemy == false)
-                    {
-                        neighbor.IsBlocked = false;
-                        returnString = "Moved";
-                        CurrentRoom = neighbor;
-                    }
+                    //if (_currentRoom.HasEnemy == false)
+                    //{
+                    //    neighbor.IsBlocked = false;
+                    //    returnString = "Moved";
+                    //    CurrentRoom = neighbor;
+                    //}
                 }
                 else
                 {
