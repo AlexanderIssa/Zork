@@ -1,6 +1,6 @@
 {
   "StartingLocation": "West of House",
-  "playerHealth": 3,
+  "playerHealth": 5,
   "World": {
     "Items": [
       {
@@ -12,7 +12,7 @@
       {
         "Name": "Mailbox",
         "LookDescription": "There is a small mailbox here.",
-        "InventoryDescription": "A heavy but unstable mailbox.\nElement: Physical",
+        "InventoryDescription": "A heavy but unstable mailbox.",
         "Element": "Physical",
         "Durability": 1,
         "Attack": 3,
@@ -27,7 +27,7 @@
       {
         "Name": "Sword",
         "LookDescription": "There is a sword covered in flames lying here.",
-        "InventoryDescription": "A sword covered in flames.\nElement: Fire",
+        "InventoryDescription": "A sword covered in flames.",
         "Element": "Fire",
         "Durability": 5,
         "Attack": 2,
@@ -36,7 +36,7 @@
       {
         "Name": "Stick",
         "LookDescription": "There is a stick lying here.",
-        "InventoryDescription": "A stick is stuffed in your pocket.\nElement: Earth",
+        "InventoryDescription": "A stick is stuffed in your pocket.",
         "Element": "Earth",
         "Durability": 1,
         "Attack": 1,

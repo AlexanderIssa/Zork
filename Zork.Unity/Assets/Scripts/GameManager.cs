@@ -1,6 +1,7 @@
 using Newtonsoft.Json;
 using UnityEngine;
 using Zork.Common;
+using UnityEngine.UI;
 using TMPro;
 
 public class GameManager : MonoBehaviour
@@ -15,13 +16,16 @@ public class GameManager : MonoBehaviour
     private TextMeshProUGUI MovesText;
 
     [SerializeField]
-    private TextMeshProUGUI HealthText;
-
-    [SerializeField]
     private UnityInputService InputService;
 
     [SerializeField]
     private UnityOutputService OutputService;
+
+    [SerializeField]
+    private Sprite[] HealthSprites;
+
+    [SerializeField]
+    private Image HealthImage;
 
     private void Awake()
     {
@@ -51,7 +55,45 @@ public class GameManager : MonoBehaviour
 
     private void Player_HealthChanged(object sender, float health)
     {
-        HealthText.text = $"Health: {health}";
+        switch (health)
+        {
+            case 5f:
+                HealthImage.sprite = HealthSprites[0];
+                break;
+            case 4.5f:
+                HealthImage.sprite = HealthSprites[1];
+                break;
+            case 4f:
+                HealthImage.sprite = HealthSprites[2];
+                break;
+            case 3.5f:
+                HealthImage.sprite = HealthSprites[3];
+                break;
+            case 3f:
+                HealthImage.sprite = HealthSprites[4];
+                break;
+            case 2.5f:
+                HealthImage.sprite = HealthSprites[5];
+                break;
+            case 2f:
+                HealthImage.sprite = HealthSprites[6];
+                break;
+            case 1.5f:
+                HealthImage.sprite = HealthSprites[7];
+                break;
+            case 1f:
+                HealthImage.sprite = HealthSprites[8];
+                break;
+            case 0.5f:
+                HealthImage.sprite = HealthSprites[9];
+                break;
+            case 0f:
+                HealthImage.sprite = HealthSprites[10];
+                break;
+            default:
+                HealthImage.sprite = HealthSprites[10];
+                break;
+        }
     }
 
     private void Start()
@@ -60,7 +102,7 @@ public class GameManager : MonoBehaviour
         LocationText.text = _game.Player.CurrentRoom.Name;
         MovesText.text = $"Moves: {_game.Player.Moves}";
         ScoreText.text = $"Score: {_game.Player.Score}";
-        HealthText.text = $"Health: {_game.Player.Health}";
+        HealthImage.sprite = HealthSprites[0];
     }
 
     private void Update()

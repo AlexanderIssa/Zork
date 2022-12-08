@@ -121,7 +121,7 @@ namespace Zork.Common
                     {
                         Output.WriteLine($"You moved {direction}.");
                     }
-                    else if ((string.Compare(Player.Move(direction), "nMoved", ignoreCase: true) == 0))
+                    else if ((string.Compare(Player.Move(direction), "nMove", ignoreCase: true) == 0))
                     {
                         Output.WriteLine("The way is shut!");
                     }
@@ -166,6 +166,11 @@ namespace Zork.Common
                         foreach (Item item in Player.Inventory)
                         {
                             Output.WriteLine(item.InventoryDescription);
+                            if (item.IsWeapon)
+                            {
+                                Output.WriteLine($"Element: {item.Element}");
+                                Output.WriteLine($"Durability: {item.Durability}");
+                            }
                         }
                     }
                     break;
@@ -177,7 +182,7 @@ namespace Zork.Common
                     }
                     else if (string.IsNullOrEmpty(withString))
                     {
-                        Output.WriteLine("Attack with what?");
+                        Output.WriteLine("This command requires you to provide a weapon to use.");
                     }
                     else
                     {
@@ -251,7 +256,7 @@ namespace Zork.Common
                     break;
 
                 case Commands.Damage:
-                    Player.Health--;
+                    Player.Health = Player.Health - 0.5f;
                     break;
 
                 default:
