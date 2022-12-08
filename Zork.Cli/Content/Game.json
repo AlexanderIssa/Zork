@@ -110,7 +110,6 @@
       {
         "Name": "West of House",
         "Description": "This is an open field west of a white house, with a boarded front door.",
-        "HasEnemy": true,
         "NeighborNames": {
           "North": "North of House",
           "South": "South of House",

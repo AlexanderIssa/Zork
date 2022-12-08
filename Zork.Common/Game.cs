@@ -345,7 +345,6 @@ namespace Zork.Common
                                     continue;
                                 }
                             }
-                            //Player.CurrentRoom.HasEnemy = false;
                             EnemyDead = true;
                         }
                     }
